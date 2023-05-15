@@ -19,7 +19,7 @@ export const Header = () => {
                 <li>
                 <i class="fa fa-heart"></i>
                 </li>
-                <button className="nav_btn">Log In</button>
+                <button className="btn_nav">Log In</button>
             </ul>
         </header>
         <div className = "header_input_mobile">
