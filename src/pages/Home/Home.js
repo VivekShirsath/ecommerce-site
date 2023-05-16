@@ -7,7 +7,6 @@ import { Footer } from "../../components/Footer/Footer";
 export const Home = () => {
     return(
         <div className="home">
-        <Header/>
         <Section />
         <Category />
         <Footer/>

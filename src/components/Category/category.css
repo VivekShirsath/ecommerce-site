@@ -25,6 +25,7 @@
     justify-content: space-around;
     padding : 10px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .category_img{

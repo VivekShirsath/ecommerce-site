@@ -1,7 +1,10 @@
 
-import './category.css'
+import './category.css';
+import { useCategory } from '../../context/CategoryContext';
 
 export const Category = () => {
+    const {category} = useCategory();
+    console.log(category);
     return(
         <>
         <div className="category">
@@ -9,14 +12,16 @@ export const Category = () => {
             <p className="category_desc">We have various category of furniture and quality is always our first priority.</p>
         </div>
         <div className="category_card">
-                <div>
-                    <img className= "category_img"src="https://ii1.pepperfry.com/media/wysiwyg/banners/Furniture_1440_category_22feb_1.jpg" alt="sofaimg"/>
-                    <p className="category_name">Sofas</p>
+            {
+                category.map(({_id,categoryName,imageId}) => {
+                    return(
+                        <div key={_id}>
+                    <img className= "category_img"src={imageId} alt="sofaimg"/>
+                    <p className="category_name">{categoryName}</p>
                 </div>
-                <div>
-                    <img className= "category_img"src="https://ii1.pepperfry.com/media/wysiwyg/banners/Furniture_1440_category_22feb_26.jpg" alt="bedimg"/>
-                    <p className="category_name">Beds</p>
-                </div>
+                    )
+                })
+            }
             </div>
         </>
     )

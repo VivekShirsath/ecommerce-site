@@ -1,13 +1,18 @@
+import { NavLink } from 'react-router-dom'
+
 import './header.css'
+
 
 export const Header = () => {
     
     return(
         <div className='nav'>
         <header className = "header">
+            <NavLink to="/">
             <div className = "header_title">
                 Furni
             </div>
+            </NavLink>
             <div className = "header_input">
                 <input type="text" placeholder='Search' className="search"/>
                 <i class="fa fa-search" style={{color : "#8b9e70",cursor : "pointer"}}></i>
