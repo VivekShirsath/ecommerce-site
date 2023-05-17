@@ -1,13 +1,16 @@
-import axios from "axios";
+
 import './productListing.css';
 import { useState,useEffect } from 'react';
-import { products } from '../../backend/db/products';
+import { Filter } from "../../components/Filter/Filter";
+import { ProductCard } from "../../components/ProductCard/ProductCard";
 
 
 export const ProductListing = () => {
+   
     return(
-        <>
-        <button onClick={() => getProducts()}>CLick</button>
-        </>
+        <div className="products">
+        <Filter/>
+        <ProductCard/>
+        </div>
     )
 }

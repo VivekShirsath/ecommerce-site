@@ -4,7 +4,6 @@ import { useCategory } from '../../context/CategoryContext';
 
 export const Category = () => {
     const {category} = useCategory();
-    console.log(category);
     return(
         <>
         <div className="category">
