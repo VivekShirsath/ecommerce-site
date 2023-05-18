@@ -85,6 +85,13 @@
     display : none;
 }
 
+.spinner{
+    font-size: 200px;
+    color :rgba(90, 90, 90, 0.35);
+    transition: 1s all ease ;
+}
+
+
 @media screen and (max-width: 885px){
     .products_name{
         width : 100%;

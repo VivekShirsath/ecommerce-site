@@ -9,18 +9,25 @@ export const ProductProvider = ({children}) => {
     const[state,dispatch] = useReducer(reducer,{
         productList : [],
         isLoading : true,
+        checkboxesForCategory : [],
+        sortByPrice : null,
+        sortByStar : null,
+        sliderValue : 30000,
+        searchText : "",
     })
     useEffect(() => {
         getProducts()
     })
 
+    
     const getProducts = async() => {
-        const {data} = await axios.get("/api/products");
-        dispatch({ type: "Initialization", payload: data.products })
+        const  data= await fetch("/api/products");
+        const   result = await data.json();
+        dispatch({ type: "Initialization", payload: result.products })
     }
 
     return(
-        <ProductContext.Provider value={{state}}>
+        <ProductContext.Provider value={{...state,dispatch}}>
             {children}
         </ProductContext.Provider>
     )

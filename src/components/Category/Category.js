@@ -1,9 +1,18 @@
 
 import './category.css';
 import { useCategory } from '../../context/CategoryContext';
+import { useProduct } from '../../context/ProductContext';
+import { useNavigate } from 'react-router-dom';
 
 export const Category = () => {
     const {category} = useCategory();
+    const {dispatch} = useProduct();
+    const navigate = useNavigate();
+
+    const addCategory = (name) => {
+        dispatch({ type: "FilterCategory", payload: name });
+        navigate("/product");
+    }
     return(
         <>
         <div className="category">
@@ -14,7 +23,7 @@ export const Category = () => {
             {
                 category.map(({_id,categoryName,imageId}) => {
                     return(
-                        <div key={_id}>
+                        <div key={_id} onClick = {() => addCategory(categoryName)}>
                     <img className= "category_img"src={imageId} alt="sofaimg"/>
                     <p className="category_name">{categoryName}</p>
                 </div>

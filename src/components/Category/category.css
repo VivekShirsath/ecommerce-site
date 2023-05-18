@@ -26,6 +26,7 @@
     padding : 10px;
     flex-wrap: wrap;
     align-items: center;
+    cursor : pointer;
 }
 
 .category_img{
