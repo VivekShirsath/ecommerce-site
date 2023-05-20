@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { useState,useEffect } from 'react';
+import { useAuth } from '../../context/AuthContext';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './signup.css';
 
 export const SignUp = () => {
-
+    const {signUpHandler,token} = useAuth();
     const [signUpdata,setSignupdata] = useState({
         username: "", 
         email: "",
@@ -14,6 +16,8 @@ export const SignUp = () => {
     email: "",
     password: "",
     confirmpassword:"",});
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,13 +26,12 @@ export const SignUp = () => {
       };
     
     const validate = (name,value) => {
-        console.log(value);
         if(name === "username"){
             if(!value.length){
                 setError({...error,username:"username can't be empty"})
             }
             if(!(/^[a-z A-Z]+$/).test(value)){
-                setError({...error,username : "Username can only be string"})
+                setError({...error,username : "Name can only be string"})
             }
             else{
                 setError({...error,username:""})
@@ -55,24 +58,29 @@ export const SignUp = () => {
                 setError({...error,password:""})
             }
         }
-
-
-        // else if(signUpdata.password === ""){
-        //     setError({...error,password : "password can't be empty"})
-        // }
-        // else if(signUpdata.password === ""){
-        //     setError({...error,confirmpassword: "password can't be empty"})
-        // }
-        
+        if(name === "confirmpassword"){
+            console.log(signUpdata.password)
+            if(signUpdata.password !== value){
+                setError({...error,confirmpassword:"Password does not match"})
+            }
+            else{
+                setError({...error,confirmpassword:""})
+            }
+        }       
     }
 
-    const handleSubmit = () => {
-        
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        signUpHandler(signUpdata)
+    }
+
+    if(token){
+        navigate(location?.state?.from.pathname || "/");
     }
 
     return(
         <div className="container">
-          <form className = "form" onClick = {handleSubmit}>
+          <form className = "form" >
             <h4 className="form_title">Sign Up</h4>
             <div className="form_section">
                 <label className="form_label">Name</label>
@@ -122,8 +130,9 @@ export const SignUp = () => {
                 placeholder='Please Reenter Password'
                 />
             </div>
+            {error.confirmpassword !== "" && <p className="form_error">{error.confirmpassword}</p>}
 
-            <button className='form_btn'>Create a New Account</button>
+            <button className='form_btn' onClick = {handleSubmit}>Create a New Account</button>
             <h5>Have a account ? <NavLink>Sign In</NavLink>
             </h5>
             </form>  

@@ -27,12 +27,15 @@ export const Header = () => {
             </div>
             <ul className = "Header_list">
                 <li>
-                <i className="fa fa-shopping-cart"></i>
+                <NavLink to ="/cart"><i className="fa fa-shopping-cart">
+                </i></NavLink>
                 </li>
                 <li>
-                <i className="fa fa-heart"></i>
+                <NavLink to ="/wishlist"><i className="fa fa-heart"></i></NavLink>
                 </li>
-                <button className="btn_nav">Log In</button>
+                <NavLink to = "/profile">
+                    <button className="btn_nav">Log In</button>
+                    </NavLink>
             </ul>
         </header>
         <div className = "header_input_mobile">
