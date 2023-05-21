@@ -10,12 +10,14 @@ export const LogIn = () => {
     const {logInHandler,token} = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
-
-   console.log(token)
     
-    if(token){
-        navigate(location?.state?.from.pathname || "/");
+   useEffect(() => {
+    if (token) {
+      navigate(location?.state?.from.pathname || '/', { replace: true });
     }
+  }, [token]);
+
+    
 
       const handleSubmit = (e) => {
         e.preventDefault();

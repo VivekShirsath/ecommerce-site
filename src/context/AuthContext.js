@@ -39,7 +39,7 @@ export const AuthProvider = ({children}) => {
                 email,
                 password,
             });
-            console.log(status,data);
+            
             if(status === 201 || status === 200){
                 localStorage.setItem('loginDetails',JSON.stringify({
                     token : data.encodedToken,

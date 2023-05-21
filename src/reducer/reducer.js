@@ -64,6 +64,34 @@ export const reducer = (state,action) => {
                 searchText : "",
             }
         }
+
+        case "CartDetails":{
+            return{
+                ...state,
+                cartList : action.payload
+            }
+        }
+
+        case "AddToCart":{
+            return{
+                ...state,
+                cartList : action.payload
+            }
+        }
+
+        case "DeleteFromCart":{
+            return{
+                ...state,
+                cartList : action.payload
+            }
+        }
+
+        case "UpdateCart":{
+            return{
+                ...state,
+                cartList : action.payload
+            }
+        }
         default:
     }
 }
