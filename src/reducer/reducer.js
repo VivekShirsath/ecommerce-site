@@ -106,6 +106,13 @@ export const reducer = (state,action) => {
                 wishList:action.payload
             }
         }
+
+        case "ShowDetails":{
+            return{
+                ...state,
+                individualProduct : action.payload
+            }
+        }
         default:
     }
 }

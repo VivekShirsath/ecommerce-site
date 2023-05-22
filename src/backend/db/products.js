@@ -13,7 +13,8 @@ export const products = [
     price: "20299",
     categoryName: "Sofas",
     image: "https://ii1.pepperfry.com/media/catalog/product/b/a/494x544/bali-3-seater-sofa-in-velvet-blue-colour-by-trevi-furniture-bali-3-seater-sofa-in-velvet-blue-colour-bldyel.jpg",
-    ratings: "2.3"
+    ratings: "2.3",
+    fastDelivery : "true",
   },
   {
     _id: uuid(),
@@ -22,7 +23,8 @@ export const products = [
     price: "26999",
     categoryName: "Sofas",
     image: "https://ii2.pepperfry.com/media/catalog/product/a/l/494x544/alba-fabric-3-seater-sofa-in-garnet-red-colour-alba-fabric-3-seater-sofa-in-garnet-red-colour-c4ujsd.jpg",
-    ratings: "3.2"
+    ratings: "3.2",
+    fastDelivery : "false",
   },
   {
     _id: uuid(),
@@ -31,7 +33,8 @@ export const products = [
     price: "15700",
     categoryName: "Sofas",
     image: "https://ii1.pepperfry.com/media/catalog/product/s/t/494x544/stuttgart-3-seater-sofa-in-beige-colour-by-solace-craft-stuttgart-3-seater-sofa-in-beige-colour-by-s-plg0gu.jpg",
-    ratings: "2.5"
+    ratings: "2.5",
+    fastDelivery : "true",
   },
   {
     _id: uuid(),
@@ -40,7 +43,8 @@ export const products = [
     price: "30000",
     categoryName: "Sofas",
     image: "https://ii1.pepperfry.com/media/catalog/product/n/e/494x544/nebula-3-seater-sofa-in-grey-colour-by-febonic-nebula-3-seater-sofa-in-grey-colour-by-febonic-iymvhj.jpg",
-    ratings: "4.8"
+    ratings: "4.8",
+    fastDelivery : "true",
   },
   {
     _id: uuid(),
@@ -49,7 +53,8 @@ export const products = [
     price: "23999",
     categoryName: "Beds",
     image: "https://ii1.pepperfry.com/media/catalog/product/a/u/494x544/aurora-king-bed-in-natural-finish-by-casacraft-aurora-king-bed-in-natural-finish-by-casacraft-cynfsa.jpg",
-    ratings: "3.7"
+    ratings: "3.7",
+    fastDelivery : "false",
   },
   {
     _id: uuid(),
@@ -58,7 +63,8 @@ export const products = [
     price: "27999",
     categoryName: "Beds",
     image: "https://ii2.pepperfry.com/media/catalog/product/e/n/494x544/enri-king-size-bed-with-drawer-storage-in-wenge-finish-by-mintwud-enri-king-size-bed-with-drawer-sto-x8qfv8.jpg",
-    ratings: "4.3"
+    ratings: "4.3",
+    fastDelivery : "true",
   },
   {
     _id: uuid(),
@@ -67,7 +73,8 @@ export const products = [
     price: "29999",
     categoryName: "Beds",
     image: "https://ii3.pepperfry.com/media/catalog/product/o/r/494x544/oriel-solid-wood-king-size-bed-with-storage-in-warm-chestnut-finish-by-woodsworth-oriel-solid-wood-k-teusoh.jpg",
-    ratings: "3.3"
+    ratings: "3.3",
+    fastDelivery : "true",
   },
   {
     _id: uuid(),
@@ -76,7 +83,8 @@ export const products = [
     price: "15999",
     categoryName: "Beds",
     image: "https://ii3.pepperfry.com/media/catalog/product/k/u/494x544/kuruma-king-size-bed-with-box-storage-in-wenge-finish-by-mintwud-kuruma-king-size-bed-with-box-stora-hlg9kg.jpg",
-    ratings: "2.8"
+    ratings: "2.8",
+    fastDelivery : "false",
   },
   {
     _id: uuid(),
@@ -85,7 +93,8 @@ export const products = [
     price: "23999",
     categoryName: "Wardrobes",
     image: "https://ii1.pepperfry.com/media/catalog/product/k/o/494x544/kosmo-apex-4-door-wardrobe-in-frosty-white--colour-by-spacewood-kosmo-apex-4-door-wardrobe-in-frosty-tc5j75.jpg",
-    ratings: "4.1"
+    ratings: "4.1",
+    fastDelivery : "false",
   },
   {
     _id: uuid(),
@@ -94,7 +103,8 @@ export const products = [
     price: "17999",
     categoryName: "Wardrobes",
     image: "https://ii2.pepperfry.com/media/catalog/product/s/p/494x544/specchio-3-door-wardrobe-in-seasons-dark-finish-by-varanda-woods-specchio-3-door-wardrobe-in-seasons-ftk4n8.jpg",
-    ratings: "3.7"
+    ratings: "3.7",
+    fastDelivery : "true",
   },
   {
     _id: uuid(),
@@ -103,7 +113,8 @@ export const products = [
     price: "29999",
     categoryName: "Wardrobes",
     image: "https://ii1.pepperfry.com/media/catalog/product/2/-/494x544/2-door--sliding-door-wardrobe-in-dark-acazia---black-finish-by-crystal-furnitech-2-door--sliding-doo-mqqenm.jpg",
-    ratings: "4.5"
+    ratings: "4.5",
+    fastDelivery : "false",
   },
 
 ];

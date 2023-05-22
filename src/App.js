@@ -9,6 +9,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import {Profile} from './pages/Profile/Profile';
 import { Cart } from './pages/Cart/Cart';
 import { WishList } from './pages/WishList/WishList';
+import { Details } from './pages/Details/Details';
 import Mockman from "mockman-js";
 import "./App.css";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/mockman" element={<Mockman/>}/>
           <Route path="/login" element={<LogIn/>}/>
           <Route path="/signup" element={<SignUp/>}/> 
+          <Route path="/details" element={<Details/>}/>
           <Route path = "/profile" element = {
             <ProtectedRoute>
               {<Profile/>}

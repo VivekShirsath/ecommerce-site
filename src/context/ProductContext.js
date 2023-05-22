@@ -1,6 +1,9 @@
 import axios from "axios";
 import { createContext,useContext,useReducer,useEffect } from "react";
 import { useAuth } from "./AuthContext";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import { reducer } from "../reducer/reducer";
 
@@ -18,11 +21,17 @@ export const ProductProvider = ({children}) => {
         searchText : "",
         cartList : [],
         wishList : [],
+        individualProduct : {},
     })
     useEffect(() => {
         getProducts()
     },[])
 
+    
+
+   const notify = () => {
+    toast(' Wow so easy!');
+}
     
     const getProducts = async() => {
         const  data= await fetch("/api/products");
@@ -56,8 +65,8 @@ export const ProductProvider = ({children}) => {
                 },
               }
             )
-            
             dispatch({type : "AddToCart",payload : data.cart})
+            notify();
         }
         catch(error){
             console.log(error);
@@ -77,6 +86,7 @@ export const ProductProvider = ({children}) => {
               )
               console.log(data);
               dispatch({type : "AddToWishList",payload : data.wishlist})
+              notify();
         }
         catch(error){
             console.log(error);
@@ -93,6 +103,7 @@ export const ProductProvider = ({children}) => {
               }
             )
             dispatch({type : "DeleteFromCart",payload : data.cart})
+            notify();
         }
         catch(error){
             console.log(error)
@@ -141,8 +152,19 @@ export const ProductProvider = ({children}) => {
         }
     }
 
+    const productDetails = async(id) => {
+        try{
+            const {data} = await axios.get(`/api/products/${id}`);
+            dispatch({type : "ShowDetails",payload : data.product})
+        }
+        catch{
+
+        }
+    }
+
     return(
-        <ProductContext.Provider value={{...state,dispatch,getCart,addToCart,deleteFromCart,updateCart,addToWishList,deleteFromWishList}}>
+        <ProductContext.Provider value={{...state,dispatch,getCart,addToCart,deleteFromCart,updateCart,addToWishList,deleteFromWishList,
+        productDetails}}>
             {children}
         </ProductContext.Provider>
     )
