@@ -1,23 +1,32 @@
 import { useProduct } from "../../context/ProductContext"
 import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate  } from 'react-router-dom';
 import './cart.css';
 
 export const Cart = () => {
-    const {cartList,dispatch,getCart,deleteFromCart,updateCart} = useProduct();
+    const {cartList,dispatch,getCart,deleteFromCart,updateCart,wishList,addToWishList} = useProduct();
     const {token} = useAuth();
-
+    const navigate = useNavigate();
     const totalPrice = cartList?.reduce((acc,{price,qty}) => acc + price *qty ,0);
 
-     useEffect(() => {
-        getCart(token);
-    },[]);
-    console.log(cartList)
+    //  useEffect(() => {
+    //     getCart(token);
+    // },[]);
+
+    const isItemInWishList = (item) => {
+        return wishList?.find((product) => product._id === item._id)
+    }
+
+    const handleClick = item => {
+        isItemInWishList(item) ? navigate('/wishlist') : addToWishList(item,token)
+    }
+   
     return(
         <>
-        { cartList.length === 0 && <p className="title">Cart is empty</p>}
-        { cartList.length !== 0 && <h3 className="title">My Cart</h3>}
-         { cartList.length !== 0 && 
+        { cartList?.length === 0 && <p className="title">Cart is empty</p>}
+        { cartList?.length !== 0 && <h3 className="title">My Cart</h3>}
+         { cartList?.length !== 0 && 
          <div className="cart_container">
         <div className="cart_list">
          {cartList?.map(({_id,title,company,price,categoryName,image,qty}) => {
@@ -35,8 +44,13 @@ export const Cart = () => {
                                 <button className="card_add" onClick={() => updateCart(_id,token,"decrement",qty)}>
                                     -</button>
                             </div>
+        
                             <button className="card_btn" onClick={() => deleteFromCart(_id,token)}
                             >Remove from cart</button>
+                            <button className="card_btn" onClick={() => handleClick({_id,title,company,price,categoryName,image,qty})}>
+                            {isItemInWishList({_id,title,company,price,categoryName,image,qty}) ? "Got to WishList" :
+                            "Add to WishList"}</button>
+                            
                         </div>
                         </div>
                     )

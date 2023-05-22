@@ -92,6 +92,20 @@ export const reducer = (state,action) => {
                 cartList : action.payload
             }
         }
+
+        case "AddToWishList":{
+            return{
+                ...state,
+                wishList : action.payload
+            }
+        }
+
+        case "DeleteFromWishList":{
+            return{
+                ...state,
+                wishList:action.payload
+            }
+        }
         default:
     }
 }

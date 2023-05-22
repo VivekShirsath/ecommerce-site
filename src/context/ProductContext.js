@@ -17,6 +17,7 @@ export const ProductProvider = ({children}) => {
         sliderValue : 30000,
         searchText : "",
         cartList : [],
+        wishList : [],
     })
     useEffect(() => {
         getProducts()
@@ -55,7 +56,27 @@ export const ProductProvider = ({children}) => {
                 },
               }
             )
+            
             dispatch({type : "AddToCart",payload : data.cart})
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    const addToWishList = async(product,token) => {
+        try{
+            const {data} = await axios.post("/api/user/wishlist",{
+                product
+            },
+            {
+                headers: {
+                  authorization: token,
+                },
+              }
+              )
+              console.log(data);
+              dispatch({type : "AddToWishList",payload : data.wishlist})
         }
         catch(error){
             console.log(error);
@@ -75,6 +96,22 @@ export const ProductProvider = ({children}) => {
         }
         catch(error){
             console.log(error)
+        }
+    }
+
+    const deleteFromWishList = async(id,token) => {
+        try{
+            const {data} = await axios.delete(`api/user/wishlist/${id}`,
+            {
+                headers: {
+                  authorization: token,
+                },
+              }
+            )
+            dispatch({type : "DeleteFromWishList",payload : data.wishlist})
+        }
+        catch(error){
+            console.log(error);
         }
     }
 
@@ -105,7 +142,7 @@ export const ProductProvider = ({children}) => {
     }
 
     return(
-        <ProductContext.Provider value={{...state,dispatch,getCart,addToCart,deleteFromCart,updateCart}}>
+        <ProductContext.Provider value={{...state,dispatch,getCart,addToCart,deleteFromCart,updateCart,addToWishList,deleteFromWishList}}>
             {children}
         </ProductContext.Provider>
     )

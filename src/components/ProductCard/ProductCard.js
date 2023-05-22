@@ -4,9 +4,10 @@ import { useProduct } from "../../context/ProductContext";
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate , useLocation } from 'react-router-dom';
 
+
 export const ProductCard = () => {
     const {productList,checkboxesForCategory,sortByPrice,sortByStar,sliderValue,
-        searchText,isLoading,addToCart,cartList} = useProduct();
+        searchText,isLoading,addToCart,cartList,addToWishList,wishList,deleteFromWishList} = useProduct();
     const {token} = useAuth();
     const navigate = useNavigate();
     const checkedList = checkboxesForCategory?.length > 0 ?
@@ -27,10 +28,18 @@ export const ProductCard = () => {
        return cartList?.find((product) => product._id === item._id)
     }
 
+    const isItemInWishList = (item) => {
+        return wishList?.find((product) => product._id === item._id)
+    }
 
     const handleClick = (item) => {
        token ? (isItemInCart(item) ? navigate("/cart")
        : addToCart(item,token)) : navigate("/login")
+    }
+
+    const handleWishClick = (item) => {
+        token ? (isItemInWishList(item) ? deleteFromWishList(item._id,token)
+       : addToWishList(item,token)) : navigate("/login")
     }
 
     return(
@@ -57,9 +66,10 @@ export const ProductCard = () => {
                     </div>
                         <p className="card_price">₹ {price}</p>
                         <button className="card_btn" onClick = { () => handleClick({_id,title,company,price,categoryName,image,ratings})}>
-                            {isItemInCart({_id,title,company,price,categoryName,image,ratings}) ? "Go To Cart" : "Add To Cart"}
+                            {isItemInCart({_id,title,company,price,categoryName,image,ratings},cartList) ? "Go To Cart" : "Add To Cart"}
                             </button>
-                        <div className="card_wish">
+                        <div className="card_wish" onClick = {() => handleWishClick({_id,title,company,price,categoryName,image,ratings})}
+                        style={{color : isItemInWishList({_id,title,company,price,categoryName,image,ratings},wishList) ? "red" : ""}}>
                         <i class="fa-regular fa-heart"></i>
                         </div>
                     </div>
