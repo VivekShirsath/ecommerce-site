@@ -7,15 +7,14 @@ export const AuthProvider = ({children}) => {
     const storage = JSON?.parse(localStorage?.getItem('loginDetails'));
     const [token,setToken] = useState(storage?.token);
     const [user,setUser] = useState(storage?.user);
-    const address = [
+    const [address,setAddress] = useState([
         {
             roomNo : "C29",
             area : "Glorinaa Valley",
             city:"Surat",
             state:"Gujarat",
-            pinCode:"394230",
         }
-    ]
+    ])
 
     const signUpHandler = async({ firstname,lastname,
     email,
@@ -66,7 +65,7 @@ export const AuthProvider = ({children}) => {
         }
     }
     return(
-        <AuthContext.Provider value={{signUpHandler,token,user,logInHandler,address}}>
+        <AuthContext.Provider value={{signUpHandler,token,user,logInHandler,address,setAddress,setToken}}>
             {children}
         </AuthContext.Provider>
     )

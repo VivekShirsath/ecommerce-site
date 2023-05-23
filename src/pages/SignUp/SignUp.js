@@ -95,10 +95,10 @@ export const SignUp = () => {
     }
 
     useEffect(() => {
-        console.log(location?.state?.from.pathname)
         if (token) {
           navigate(location?.state?.from.pathname || "/");
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       },[token]);
 
     return(

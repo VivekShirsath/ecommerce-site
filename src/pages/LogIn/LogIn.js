@@ -16,10 +16,12 @@ export const LogIn = () => {
     })
     const testData = {email : "adarshbalika@gmail.com",password:"adarshbalika"}
     
+    
    useEffect(() => {
     if (token) {
       navigate(location?.state?.from.pathname);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const handleChange = (e) => {
