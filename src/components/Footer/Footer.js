@@ -13,9 +13,9 @@ export const Footer = () => {
             <section className="footer_list">
                 <ul>
                     <li>Connect</li>
-                    <li><a href="https://github.com/VivekShirsath" target="_blank">Github</a></li>
-                    <li><a href="https://www.linkedin.com/in/vivek-shirsath/" target="_blank">Linkedn</a></li>
-                    <li><a href="https://twitter.com/VivekShirsath20" target="_blank">Twitter</a></li>
+                    <li><a href="https://github.com/VivekShirsath" target="_blank" rel="noreferrer">Github</a></li>
+                    <li><a href="https://www.linkedin.com/in/vivek-shirsath/" target="_blank" rel="noreferrer">Linkedn</a></li>
+                    <li><a href="https://twitter.com/VivekShirsath20" target="_blank" rel="noreferrer">Twitter</a></li>
                 </ul>
             </section>
         </footer>

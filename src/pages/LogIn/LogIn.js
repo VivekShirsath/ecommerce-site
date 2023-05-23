@@ -1,7 +1,7 @@
 
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { useEffect } from 'react';
+import { useEffect ,useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './login.css';
 
@@ -10,18 +10,31 @@ export const LogIn = () => {
     const {logInHandler,token} = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
+    const [loginData,setLoginData] = useState({
+      email : "",
+      password : "",
+    })
+    const testData = {email : "adarshbalika@gmail.com",password:"adarshbalika"}
     
    useEffect(() => {
     if (token) {
-      navigate(location?.state?.from.pathname || '/', { replace: true });
+      navigate(location?.state?.from.pathname);
     }
   }, [token]);
 
-    
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData({ ...loginData, [name]: value });
+  };
 
-      const handleSubmit = (e) => {
+      const handleSubmit = (data,e) => {
         e.preventDefault();
-        logInHandler();
+        if(data.email === "" || data.password === ""){
+          console.log("Please enter fields")
+        }
+        else{
+          logInHandler(data.email,data.password);
+        }
       }
     return(
         <div className="container">
@@ -33,7 +46,10 @@ export const LogIn = () => {
                 <input 
                 className="form_input"
                 type="email"
+                name="email"
+                value={loginData.email}
                 placeholder='Please enter email'
+                onChange={(e) => handleChange(e)}
                 />
             </div>
 
@@ -42,12 +58,15 @@ export const LogIn = () => {
                 <input 
                 className="form_input"
                 type="password"
+                name="password"
+                value={loginData.password}
                 placeholder='Please enter Password'
+                onChange={(e) => handleChange(e)}
                 />
             </div>
 
-            <button className='form_btn'>Log In</button>
-            <button className='form_btn' onClick={handleSubmit}>Log In as Guest</button>
+            <button className='form_btn' onClick={(e) => handleSubmit(loginData,e)}>Log In</button>
+            <button className='form_btn' onClick={(e) =>handleSubmit(testData,e)}>Log In as Guest</button>
             <h5>Don't have an account ? <NavLink to ="/signup">Sign Up</NavLink>
             </h5>
             </form>  

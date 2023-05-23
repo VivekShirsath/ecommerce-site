@@ -1,11 +1,10 @@
 import { useProduct } from "../../context/ProductContext"
-import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate  } from 'react-router-dom';
 import './cart.css';
 
 export const Cart = () => {
-    const {cartList,dispatch,getCart,deleteFromCart,updateCart,wishList,addToWishList} = useProduct();
+    const {cartList,deleteFromCart,updateCart,wishList,addToWishList} = useProduct();
     const {token} = useAuth();
     const navigate = useNavigate();
     const totalPrice = cartList?.reduce((acc,{price,qty}) => acc + price *qty ,0);

@@ -1,0 +1,74 @@
+
+.profile_container{
+    display : flex;
+    width : 100vw;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    color : var(--secondary-text-color)   
+}
+
+.profile{
+    display : flex;
+    flex-direction: column;
+    box-shadow: rgba(90, 90, 90, 0.35) 0px 5px 15px;
+    padding : 30px;
+    color : var(--secondary-text-color)
+}
+
+.profile_title{
+    padding : 10px;
+    text-align: center;
+}
+
+.profile_details{
+    padding : 10px;
+    display : flex;
+    flex-direction: column;
+}
+
+.profile_name{
+    padding : 10px;
+}
+
+.profile_email{
+    padding : 10px;
+}
+
+.profile_address{
+    padding : 10px;
+    display : flex;
+    flex-direction: column;
+}
+
+.profile_bold{
+    font-weight: 700;
+}
+
+.address-btn{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+
+.profile-btn{
+    border-radius: 10px;
+    color : lightgray;
+    padding : 10px;
+    color : var(--secondary-text-color);
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.delete{
+    background-color: red;
+    color : white;
+}
+
+.address-add{
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    padding : 10px;
+}

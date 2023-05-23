@@ -2,7 +2,7 @@
 import './productCard.css';
 import { useProduct } from "../../context/ProductContext";
 import { useAuth } from '../../context/AuthContext';
-import { useNavigate , useLocation } from 'react-router-dom';
+import { useNavigate , useLocation} from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
 
@@ -12,6 +12,7 @@ export const ProductCard = () => {
     ,productDetails} = useProduct();
     const {token} = useAuth();
     const navigate = useNavigate();
+    const location = useLocation()
     const checkedList = checkboxesForCategory?.length > 0 ?
          productList.filter((item) => checkboxesForCategory.find((element) => item.categoryName === element ))
          : productList;
@@ -38,14 +39,14 @@ export const ProductCard = () => {
     e.stopPropagation();
     e.preventDefault();
        token ? (isItemInCart(item) ? navigate("/cart")
-       : addToCart(item,token)) : navigate("/login")
+       : addToCart(item,token)) : navigate('/login', { state: { from: location } })
     }
 
     const handleWishClick = (item,e) => {
         e.stopPropagation();
         e.preventDefault();
         token ? (isItemInWishList(item) ? deleteFromWishList(item._id,token)
-       : addToWishList(item,token)) : navigate("/login")
+       : addToWishList(item,token)) : navigate("/login",{ state: { from: location } })
     }
 
 

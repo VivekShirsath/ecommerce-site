@@ -1,5 +1,4 @@
 import { useProduct } from "../../context/ProductContext"
-import { useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import './wishlist.css'
 

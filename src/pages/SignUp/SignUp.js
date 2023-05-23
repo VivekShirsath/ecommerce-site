@@ -7,12 +7,13 @@ import './signup.css';
 export const SignUp = () => {
     const {signUpHandler,token} = useAuth();
     const [signUpdata,setSignupdata] = useState({
-        username: "", 
+        firstname: "", 
+        lastname:"",
         email: "",
         password: "",
         confirmpassword:"",
     });
-    const [error,setError] = useState({username: null, 
+    const [error,setError] = useState({firstname: "", 
     email: "",
     password: "",
     confirmpassword:"",});
@@ -25,16 +26,16 @@ export const SignUp = () => {
         validate(name,value);
       };
     
-    const validate = (name,value) => {
-        if(name === "username"){
+      const validate = (name,value) => {
+        if(name === "firstname"){
             if(!value.length){
-                setError({...error,username:"username can't be empty"})
+                setError({...error,firstname:"firstname can't be empty"})
             }
             if(!(/^[a-z A-Z]+$/).test(value)){
-                setError({...error,username : "Name can only be string"})
+                setError({...error,firstname : "firstname can only be string"})
             }
             else{
-                setError({...error,username:""})
+                setError({...error,firstname:""})
             }
         }
         if(name === "email"){
@@ -59,7 +60,6 @@ export const SignUp = () => {
             }
         }
         if(name === "confirmpassword"){
-            console.log(signUpdata.password)
             if(signUpdata.password !== value){
                 setError({...error,confirmpassword:"Password does not match"})
             }
@@ -68,32 +68,67 @@ export const SignUp = () => {
             }
         }       
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        signUpHandler(signUpdata)
+        if(signUpdata.firstname=== "" || signUpdata.lastname === "" || signUpdata.email === "" || signUpdata.password==="" || signUpdata.confirmpassword===""){
+            if(signUpdata.firstname=== ""){
+                setError({...error,firstname :"firstname can't be empty"})
+            }
+            else if(signUpdata.email=== ""){
+                setError({...error,email :"email can't be empty"})
+            }
+            else if(signUpdata.password=== ""){
+                setError({...error,password :"password can't be empty"})
+            }
+            else if(signUpdata.confirmpassword=== ""){
+                setError({...error,confirmpassword :"confirmpassword can't be empty"})
+            }
+        }
+        else if(error.firstname!=="" || error.email!=="" || error.password!=="" ||
+         error.confirmpassword!==""){
+            return;
+        }
+        else{
+            signUpHandler(signUpdata)
+        }
+        console.log(error);
     }
 
-    if(token){
-        navigate(location?.state?.from.pathname || "/");
-    }
+    useEffect(() => {
+        console.log(location?.state?.from.pathname)
+        if (token) {
+          navigate(location?.state?.from.pathname || "/");
+        }
+      },[token]);
 
     return(
         <div className="container">
           <form className = "form" >
             <h4 className="form_title">Sign Up</h4>
             <div className="form_section">
-                <label className="form_label">Name</label>
+                <label className="form_label">First Name</label>
                 <input 
                 className="form_input"
                 type="text"
-                name="username"
-                value={signUpdata.username}
+                name="firstname"
+                value={signUpdata.firstname}
                 onChange={(e) => handleChange(e)}
-                placeholder='Please enter name'
+                placeholder='Please enter firstname'
                 />
             </div>
-            {error.username !== "" && <p className="form_error">{error.username}</p>}
+            {error.firstname !== "" && <p className="form_error">{error.firstname}</p>}
+
+            <div className="form_section">
+                <label className="form_label">Last Name</label>
+                <input 
+                className="form_input"
+                type="text"
+                name="lastname"
+                value={signUpdata.lastname}
+                onChange={(e) => handleChange(e)}
+                placeholder='Please enter lastname'
+                />
+            </div>
 
             <div className="form_section">
                 <label className="form_label">Email</label>

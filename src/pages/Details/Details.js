@@ -1,5 +1,4 @@
 import { useProduct } from "../../context/ProductContext"
-import { WishList } from "../WishList/WishList";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import './details.css'

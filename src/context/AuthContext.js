@@ -7,17 +7,27 @@ export const AuthProvider = ({children}) => {
     const storage = JSON?.parse(localStorage?.getItem('loginDetails'));
     const [token,setToken] = useState(storage?.token);
     const [user,setUser] = useState(storage?.user);
+    const address = [
+        {
+            roomNo : "C29",
+            area : "Glorinaa Valley",
+            city:"Surat",
+            state:"Gujarat",
+            pinCode:"394230",
+        }
+    ]
 
-    const signUpHandler = async({ username, 
+    const signUpHandler = async({ firstname,lastname,
     email,
     password,
     }) => 
     {
     try{
         const {status,data} = await axios.post("/api/auth/signup",{
-            name : username,
             email,
             password,
+            firstName : firstname,
+            lastName : lastname,
     })
         if(status === 201){
             localStorage.setItem('loginDetails',JSON.stringify({
@@ -27,13 +37,15 @@ export const AuthProvider = ({children}) => {
             setToken(data.encodedToken);
             setUser(data.createdUser);
         }
+        console.log(data);
     }
     catch(error){
         console.log(error);
     }
 }
 
-    const logInHandler = async(email="adarshbalika@gmail.com",password="adarshbalika") => {
+    const logInHandler = async(email,password) => {
+        console.log(email,password)
         try{
             const {status,data} = await axios.post("/api/auth/login",{
                 email,
@@ -43,10 +55,10 @@ export const AuthProvider = ({children}) => {
             if(status === 201 || status === 200){
                 localStorage.setItem('loginDetails',JSON.stringify({
                     token : data.encodedToken,
-                    user : data.createdUser,
+                    user : data.foundUser,
                 }));
                 setToken(data.encodedToken);
-                setUser(data.createdUser);
+                setUser(data.foundUser);
             }
         }
         catch(error){
@@ -54,7 +66,7 @@ export const AuthProvider = ({children}) => {
         }
     }
     return(
-        <AuthContext.Provider value={{signUpHandler,token,user,logInHandler}}>
+        <AuthContext.Provider value={{signUpHandler,token,user,logInHandler,address}}>
             {children}
         </AuthContext.Provider>
     )

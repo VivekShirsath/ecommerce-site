@@ -10,6 +10,7 @@ import {Profile} from './pages/Profile/Profile';
 import { Cart } from './pages/Cart/Cart';
 import { WishList } from './pages/WishList/WishList';
 import { Details } from './pages/Details/Details';
+import { Address } from './pages/Address/Address';
 import Mockman from "mockman-js";
 import "./App.css";
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<LogIn/>}/>
           <Route path="/signup" element={<SignUp/>}/> 
           <Route path="/details" element={<Details/>}/>
+          <Route path="/address" element={<Address/>}/>
           <Route path = "/profile" element = {
             <ProtectedRoute>
               {<Profile/>}

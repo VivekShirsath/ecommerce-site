@@ -2,4 +2,6 @@
 .form_error{
     width: 100%;
     font-size: 0.9rem;
+    text-align: center;
+    color : red;
 }
