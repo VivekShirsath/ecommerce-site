@@ -60,7 +60,7 @@ export const Checkout = () => {
             })
         }
        </div>
-       <button className="checkout_btn">Place Order</button>
+       <button className="place_btn">Place Order</button>
        </div>
         </div>
         </>

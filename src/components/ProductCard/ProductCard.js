@@ -10,6 +10,7 @@ export const ProductCard = () => {
     const {productList,checkboxesForCategory,sortByPrice,sortByStar,sliderValue,
         searchText,isLoading,addToCart,cartList,addToWishList,wishList,deleteFromWishList
     ,productDetails,dispatch,isDrawer} = useProduct();
+    
     const {token} = useAuth();
     const navigate = useNavigate();
     const location = useLocation()
@@ -17,15 +18,17 @@ export const ProductCard = () => {
          productList.filter((item) => checkboxesForCategory.find((element) => item.categoryName === element ))
          : productList;
 
-    
-    const filterforPrice = sortByPrice ? checkedList.sort((a,b) => sortByPrice === "High to Low" ? b.price-a.price : a.price-b.price)
+    const list = [...checkedList]
+    const filterforPrice = sortByPrice.length > 0 ? list.sort((a,b) => sortByPrice === "High to Low" ? b.price-a.price : a.price-b.price)
     : checkedList;
 
-    const filterforRatingList = sortByStar ? filterforPrice.filter(({ratings}) => ratings > sortByStar) : filterforPrice;
+    const filterforRatingList = sortByStar.length > 0 ? filterforPrice.filter(({ratings}) => ratings > sortByStar) : filterforPrice;
 
     const filteredList = filterforRatingList?.filter(({price}) => Number(price) <= sliderValue);
 
     const searchedList = searchText.length > 0 ? filteredList.filter(({title}) => title.toLowerCase().includes(searchText)) : filteredList;
+
+    console.log(productList)
 
     const isItemInCart = (item) =>{
        return cartList?.find((product) => product._id === item._id)
@@ -67,8 +70,7 @@ export const ProductCard = () => {
             <i className="fa fa-spinner" aria-hidden="true"></i>
             </div>}
             {
-                !isLoading && searchedList?.map(({_id,title,company,price,categoryName,image,ratings}) => {
-                    
+                !isLoading && searchedList?.map(({_id,title,company,price,categoryName,image,ratings}) => { 
                     return(
                     <NavLink to = "/details"><div className="card" key={_id} onClick={() => productDetails(_id)}>
                     <img className= "card_img"src={image} alt="productimage"/>

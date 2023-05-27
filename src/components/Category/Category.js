@@ -10,7 +10,7 @@ export const Category = () => {
     const navigate = useNavigate();
 
     const addCategory = (name) => {
-        dispatch({ type: "FilterCategory", payload: name });
+        dispatch({ type: "SelectCategory", payload: name });
         navigate("/product");
     }
     return(

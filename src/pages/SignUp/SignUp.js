@@ -21,6 +21,8 @@ export const SignUp = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const [isVisible,setVisible] = useState({password:false,confirm:false})
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setSignupdata({ ...signUpdata, [name]: value });
@@ -110,6 +112,15 @@ export const SignUp = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
       },[token]);
 
+      const handleVisible = value => {
+        if(value==="confirm"){
+            setVisible({...isVisible,confirm : !isVisible.confirm})
+        }
+        else{
+            setVisible({...isVisible,password : !isVisible.password})
+        }
+      }
+
     return(
         <div className="container">
           <form className = "form" >
@@ -153,26 +164,39 @@ export const SignUp = () => {
             {error.email !== "" && <p className="form_error">{error.email}</p>}
             <div className="form_section">
                 <label className="form_label">Password</label>
+                <div className="password">
                 <input 
                 className="form_input"
-                type="password"
+                type={isVisible.password ? "text" : 'password'}
                 name="password"
                 value={signUpdata.password}
                 onChange={(e) => handleChange(e)}
                 placeholder='Please enter Password'
                 />
+                {
+                    isVisible.password ? <i class="fa fa-eye-slash" aria-hidden="true" onClick = {() => handleVisible()}></i>
+                    : <i class="fa fa-eye" aria-hidden="true" onClick = {() => handleVisible()}></i>
+                }
+                </div>
             </div>
             {error.password !== "" && <p className="form_error">{error.password}</p>}
             <div className="form_section">
                 <label className="form_label">Confirm Password</label>
+                <div className="password">
                 <input 
                 className="form_input"
-                type="password"
+                type={isVisible.confirm ? "text" : "password"}
                 name="confirmpassword"
                 value={signUpdata.confirmpassword}
                 onChange={(e) => handleChange(e)}
                 placeholder='Please Reenter Password'
                 />
+                {
+                    isVisible.confirm ? <i class="fa fa-eye-slash" aria-hidden="true" onClick = {() => handleVisible("confirm")}></i>
+                    : <i class="fa fa-eye" aria-hidden="true" onClick = {() => handleVisible("confirm")}></i>
+                }
+                
+            </div>
             </div>
             {error.confirmpassword !== "" && <p className="form_error">{error.confirmpassword}</p>}
 

@@ -9,6 +9,14 @@ export const reducer = (state,action) => {
             }
         }
         
+        case "SelectCategory":{
+            return{
+                ...state,
+                checkboxesForCategory : [...state.checkboxesForCategory,action.payload]
+            }
+        }
+
+
         case "FilterCategory":{
 
             console.log(action.payload)
@@ -58,8 +66,8 @@ export const reducer = (state,action) => {
             return{
                 ...state,
                 checkboxesForCategory : [],
-                sortByPrice : null,
-                sortByStar : null,
+                sortByPrice : "",
+                sortByStar : "",
                 sliderValue : 30000,
                 searchText : "",
             }

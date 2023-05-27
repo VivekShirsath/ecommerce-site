@@ -18,6 +18,7 @@ export const LogIn = () => {
       email : "",
       password : "",
     })
+    const [isVisible,setVisible] = useState(false);
     const testData = {email : "adarshbalika@gmail.com",password:"adarshbalika"}
     
     
@@ -46,6 +47,10 @@ export const LogIn = () => {
           logInHandler(data.email,data.password);
         }
       }
+
+      const handleVisible = () => {
+        setVisible(!isVisible)
+      }
     return(
         <div className="container">
           <form className = "form">
@@ -66,15 +71,22 @@ export const LogIn = () => {
             {error.email !== "" && <p className="form_error">{error.email}</p>}
             <div className="form_section">
                 <label className="form_label">Password</label>
+                <div className='password'>
                 <input 
                 className="form_input"
-                type="password"
+                type={isVisible ? "text" : "password"}
                 name="password"
                 value={loginData.password}
                 placeholder='Please enter Password'
                 onChange={(e) => handleChange(e)}
                 required
                 />
+                {
+                  isVisible ? <i class="fa fa-eye-slash" aria-hidden="true" onClick = {() => handleVisible()}></i>
+                  : <i class="fa fa-eye" aria-hidden="true" onClick = {() => handleVisible()}></i>
+                }
+                
+                </div>
             </div>
             {error.password !== "" && <p className="form_error">{error.password}</p>}
             <button className='form_btn' onClick={(e) => handleSubmit(loginData,e)}>Log In</button>

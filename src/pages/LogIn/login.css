@@ -53,3 +53,14 @@
     font-size: 1rem;
     padding : 10px;
 }
+
+.password{
+    position: relative;
+}
+
+.fa.fa-eye, .fa.fa-eye-slash {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor : pointer;
+}

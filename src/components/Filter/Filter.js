@@ -5,6 +5,7 @@ import { useProduct } from '../../context/ProductContext';
 export const Filter = () => {
     const {checkboxesForCategory,dispatch,sortByPrice,sortByStar,
       sliderValue,isDrawer} = useProduct();
+      console.log(checkboxesForCategory?.find(item => item === "Sofas"));
     return(
         <div className={isDrawer ? "filter draw" : "filter"}>
             <div className = "filter_title">
@@ -22,7 +23,7 @@ export const Filter = () => {
                   type="checkbox"
                   id="category"
                   name="Sofas" 
-                  checked = {checkboxesForCategory?.find(item => item === "Sofas")}
+                  checked = {checkboxesForCategory?.find(item => item === "Sofas")||false}
                   onChange={(e) =>
                     dispatch({ type: "FilterCategory", payload: e.target.name })
                   }/>
@@ -33,7 +34,7 @@ export const Filter = () => {
                   type="checkbox"
                   id="category"
                   name="Beds" 
-                  checked = {checkboxesForCategory?.find(item => item === "Beds")}
+                  checked = {checkboxesForCategory?.find(item => item === "Beds")||false}
                   onChange={(e) =>
                     dispatch({ type: "FilterCategory", payload: e.target.name })
                   }/>
@@ -44,7 +45,8 @@ export const Filter = () => {
                   type="checkbox"
                   id="category"
                   name="Wardrobes"
-                  checked = {checkboxesForCategory?.find(item => item === "Wardrobes")}
+                  checked = {checkboxesForCategory?.find(item => item === "Wardrobes")||false}
+                 
                   onChange={(e) =>
                     dispatch({ type: "FilterCategory", payload: e.target.name })
                   } 
