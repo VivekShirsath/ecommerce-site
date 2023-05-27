@@ -68,9 +68,15 @@
 }
 
 @media screen and (max-width: 885px){
+    .filter{
+        left : -300px;
+    }
 
-.filter{
-    display: none;
-}
+  .draw{
+    display : relative;
+    left : 0;
+    z-index : 999;
+    width : 100%;
+ }
 }
 

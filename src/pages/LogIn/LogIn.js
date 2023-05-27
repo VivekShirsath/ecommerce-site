@@ -14,12 +14,16 @@ export const LogIn = () => {
       email : "",
       password : "",
     })
+    const [error,setError] = useState({
+      email : "",
+      password : "",
+    })
     const testData = {email : "adarshbalika@gmail.com",password:"adarshbalika"}
     
     
    useEffect(() => {
     if (token) {
-      navigate(location?.state?.from.pathname);
+      navigate(location?.state?.from.pathname || '/');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
@@ -27,12 +31,16 @@ export const LogIn = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setLoginData({ ...loginData, [name]: value });
+    setError({...error,email : "",password:""})
   };
 
       const handleSubmit = (data,e) => {
         e.preventDefault();
-        if(data.email === "" || data.password === ""){
-          console.log("Please enter fields")
+        if(data.email === ""){
+          setError({...error,email:"Email can't be empty"})
+        }
+        else if(data.password === ""){
+          setError({...error,password:"Password can't be empty"})
         }
         else{
           logInHandler(data.email,data.password);
@@ -52,9 +60,10 @@ export const LogIn = () => {
                 value={loginData.email}
                 placeholder='Please enter email'
                 onChange={(e) => handleChange(e)}
+                required
                 />
             </div>
-
+            {error.email !== "" && <p className="form_error">{error.email}</p>}
             <div className="form_section">
                 <label className="form_label">Password</label>
                 <input 
@@ -64,9 +73,10 @@ export const LogIn = () => {
                 value={loginData.password}
                 placeholder='Please enter Password'
                 onChange={(e) => handleChange(e)}
+                required
                 />
             </div>
-
+            {error.password !== "" && <p className="form_error">{error.password}</p>}
             <button className='form_btn' onClick={(e) => handleSubmit(loginData,e)}>Log In</button>
             <button className='form_btn' onClick={(e) =>handleSubmit(testData,e)}>Log In as Guest</button>
             <h5>Don't have an account ? <NavLink to ="/signup">Sign Up</NavLink>

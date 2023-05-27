@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 export const ProductCard = () => {
     const {productList,checkboxesForCategory,sortByPrice,sortByStar,sliderValue,
         searchText,isLoading,addToCart,cartList,addToWishList,wishList,deleteFromWishList
-    ,productDetails} = useProduct();
+    ,productDetails,dispatch,isDrawer} = useProduct();
     const {token} = useAuth();
     const navigate = useNavigate();
     const location = useLocation()
@@ -51,9 +51,15 @@ export const ProductCard = () => {
 
 
     return(
-        <div className="products_name">
+        <>
+        {!isLoading && searchedList?.length === 0 && <h4 className="msg">Sorry,No Products Found.</h4>}
+        <div className={isDrawer ? "products_name ham" : "products_name"}>
             <div className='menu'>
-            <h4>All Products</h4>
+            <div className="hamburger" >
+            <i class="fa fa-bars" aria-hidden="true" onClick={() => dispatch({type:"Drawer"})}>
+            </i>
+            <h4>Filters</h4>
+            </div>
             </div>
         <div className="furniture_products">
             {isLoading && 
@@ -62,7 +68,7 @@ export const ProductCard = () => {
             </div>}
             {
                 !isLoading && searchedList?.map(({_id,title,company,price,categoryName,image,ratings}) => {
-                    //const {_id,title,company,price,categoryName,image,ratings} = item;
+                    
                     return(
                     <NavLink to = "/details"><div className="card" key={_id} onClick={() => productDetails(_id)}>
                     <img className= "card_img"src={image} alt="productimage"/>
@@ -87,5 +93,6 @@ export const ProductCard = () => {
 
         </div>
         </div>
+        </>
     )
 }

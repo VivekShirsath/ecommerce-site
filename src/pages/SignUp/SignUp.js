@@ -14,6 +14,7 @@ export const SignUp = () => {
         confirmpassword:"",
     });
     const [error,setError] = useState({firstname: "", 
+    lastname:"",
     email: "",
     password: "",
     confirmpassword:"",});
@@ -38,12 +39,22 @@ export const SignUp = () => {
                 setError({...error,firstname:""})
             }
         }
+        if(name === "lastname"){
+            if(!value.length){
+                setError({...error,lastname:"lastname can't be empty"})
+            }
+            if(!(/^[a-z A-Z]+$/).test(value)){
+                setError({...error,firstname : "lastname can only be string"})
+            }
+            else{
+                setError({...error,lastname:""})
+            }
+        }
         if(name === "email"){
             if(signUpdata.email === ""){
                 setError({...error,email : "email can't be empty"})
             }
-            if(!(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-                value.toLowerCase()))){
+            if(!(/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/.test(value))){
                 setError({...error,email : "Email should be in valid format"})
             }
             else{
@@ -59,30 +70,28 @@ export const SignUp = () => {
                 setError({...error,password:""})
             }
         }
-        if(name === "confirmpassword"){
-            if(signUpdata.password !== value){
-                setError({...error,confirmpassword:"Password does not match"})
-            }
-            else{
-                setError({...error,confirmpassword:""})
-            }
-        }       
+        if(name==="confirmpassword"){
+            setError({...error,confirmpassword:""})
+        }  
     }
     const handleSubmit = (e) => {
         e.preventDefault();
         if(signUpdata.firstname=== "" || signUpdata.lastname === "" || signUpdata.email === "" || signUpdata.password==="" || signUpdata.confirmpassword===""){
             if(signUpdata.firstname=== ""){
-                setError({...error,firstname :"firstname can't be empty"})
+               return setError({...error,firstname :"firstname can't be empty"})
             }
             else if(signUpdata.email=== ""){
-                setError({...error,email :"email can't be empty"})
+               return setError({...error,email :"email can't be empty"})
             }
             else if(signUpdata.password=== ""){
-                setError({...error,password :"password can't be empty"})
+                return setError({...error,password :"password can't be empty"})
             }
             else if(signUpdata.confirmpassword=== ""){
-                setError({...error,confirmpassword :"confirmpassword can't be empty"})
+                return setError({...error,confirmpassword :"confirmpassword can't be empty"})
             }
+        }
+        if(signUpdata.password !== signUpdata.confirmpassword){
+            return setError({...error,confirmpassword:"Password does not match"})
         }
         else if(error.firstname!=="" || error.email!=="" || error.password!=="" ||
          error.confirmpassword!==""){
@@ -91,7 +100,7 @@ export const SignUp = () => {
         else{
             signUpHandler(signUpdata)
         }
-        console.log(error);
+       
     }
 
     useEffect(() => {
@@ -168,7 +177,7 @@ export const SignUp = () => {
             {error.confirmpassword !== "" && <p className="form_error">{error.confirmpassword}</p>}
 
             <button className='form_btn' onClick = {handleSubmit}>Create a New Account</button>
-            <h5>Have a account ? <NavLink>Sign In</NavLink>
+            <h5>Have a account ? <NavLink to='/login'>Sign In</NavLink>
             </h5>
             </form>  
         </div>

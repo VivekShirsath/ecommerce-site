@@ -34,12 +34,13 @@ export const Header = () => {
                 <NavLink to ="/wishlist"><i className="fa fa-heart"></i></NavLink>
                 </li>
                 <NavLink to = "/profile">
-                    <button className="btn_nav">Log In</button>
+                    <i class="fa fa-user" aria-hidden="true"></i>
                     </NavLink>
             </ul>
         </header>
         <div className = "header_input_mobile">
-                <input type="text" placeholder='Search' className="search"/>
+                <input type="text" placeholder='Search' className="search"
+                onInput={(e) => handleSearch(e.target.value)}/>
                 <i className="fa fa-search" style={{color : "#8b9e70"}}></i>
             </div>
         </div>

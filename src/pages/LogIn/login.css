@@ -40,7 +40,13 @@
 .form_btn{
     padding : 10px;
     width: 100%;
-
+    cursor : pointer;
+    background-color: #214946;
+    color: white;
+    padding: 10px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    border: transparent;
 }
 
 .form_input{

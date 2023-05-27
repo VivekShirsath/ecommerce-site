@@ -75,8 +75,8 @@ export const Profile = () => {
            <h2 className="profile_title">Profile Information</h2>
            <hr></hr>
            <div className="profile_details">
-            <div className="profile_name"><span className="profile_bold">Name</span> : {user.firstName} {user.lastName}</div>
-            <div className="profile_email"><span className="profile_bold">Email</span> : {user.email}</div>
+            <div className="profile_name"><span className="profile_bold">Name</span> : {user?.firstName} {user?.lastName}</div>
+            <div className="profile_email"><span className="profile_bold">Email</span> : {user?.email}</div>
            </div>
            <hr></hr>
            <div className="profile_address">

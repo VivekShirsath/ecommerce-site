@@ -1,8 +1,6 @@
 import axios from "axios";
 import { createContext,useContext,useReducer,useEffect } from "react";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { toast } from "react-toastify";
 
 import { reducer } from "../reducer/reducer";
 
@@ -21,16 +19,38 @@ export const ProductProvider = ({children}) => {
         cartList : [],
         wishList : [],
         individualProduct : {},
+        isDrawer : false,
     })
     useEffect(() => {
         getProducts()
     },[])
 
-    
+    const toastSuccess = (message) => {
+        toast.success(message, {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    }
 
-   const notify = () => {
-    toast(' Wow so easy!');
-}
+    const toastError = (message) => {
+        toast.error(message, {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    }
+
     
     const getProducts = async() => {
         const  data= await fetch("/api/products");
@@ -65,7 +85,7 @@ export const ProductProvider = ({children}) => {
               }
             )
             dispatch({type : "AddToCart",payload : data.cart})
-            notify();
+           toastSuccess("Added To Cart");
         }
         catch(error){
             console.log(error);
@@ -83,9 +103,9 @@ export const ProductProvider = ({children}) => {
                 },
               }
               )
-              console.log(data);
+              
               dispatch({type : "AddToWishList",payload : data.wishlist})
-              notify();
+              toastSuccess("Added To WishList")
         }
         catch(error){
             console.log(error);
@@ -102,7 +122,7 @@ export const ProductProvider = ({children}) => {
               }
             )
             dispatch({type : "DeleteFromCart",payload : data.cart})
-            notify();
+            toastError("Deleted From Cart")
         }
         catch(error){
             console.log(error)
@@ -119,6 +139,7 @@ export const ProductProvider = ({children}) => {
               }
             )
             dispatch({type : "DeleteFromWishList",payload : data.wishlist})
+            toastError("Deleted From WishList")
         }
         catch(error){
             console.log(error);

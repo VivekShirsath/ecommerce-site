@@ -113,6 +113,13 @@ export const reducer = (state,action) => {
                 individualProduct : action.payload
             }
         }
+
+        case "Drawer":{
+            return{
+                ...state,
+                isDrawer : !state.isDrawer,
+            }
+        }
         default:
     }
 }

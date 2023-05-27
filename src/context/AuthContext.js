@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createContext,useContext,useState } from "react";
+import {toast} from 'react-toastify';
 
 export const AuthContext = createContext(null);
 
@@ -16,6 +17,18 @@ export const AuthProvider = ({children}) => {
         }
     ])
 
+    const toastError = (message) => {
+        toast.error(message, {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    }
     const signUpHandler = async({ firstname,lastname,
     email,
     password,
@@ -61,7 +74,7 @@ export const AuthProvider = ({children}) => {
             }
         }
         catch(error){
-            console.log(error);
+           toastError("Invalid credentials")
         }
     }
     return(

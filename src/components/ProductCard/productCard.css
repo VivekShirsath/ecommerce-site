@@ -10,6 +10,7 @@
     text-align: center;
     font-size: 1.5rem;
     display : inline;
+    margin-left: 10px;
 }
 
 
@@ -84,11 +85,10 @@ a{
 }
 
 .menu{
-    display: flex;
-    justify-content: space-around;
+    display : none;
 }
 
-.hamburger{
+.products_name .hamburger{
     display : none;
 }
 
@@ -98,20 +98,42 @@ a{
     transition: 1s all ease ;
 }
 
+.msg{
+    width : 100vw;
+    margin : 0 auto;
+    text-align: center;
+    padding : 10px;
+    color : var(--secondary-text-color)
+}
 
 @media screen and (max-width: 885px){
     .products_name{
         width : 100%;
     }
-    .hamburger{
-        display : flex;
-        align-items: center;
-        gap : 10px;
-    }
 
+    .ham{
+        display : none;
+    }
     .furniture_products{
         position: absolute;
         left: 0;
         margin-top: 30px;
+    }
+    .products_name .hamburger{
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .menu{
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        background-color: var(--navbar-bg-color);
+        color: white;
+        z-index: 10000;
+        justify-content: space-around;
+        padding: 10px;
     }
 }

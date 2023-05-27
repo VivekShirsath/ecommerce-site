@@ -1,0 +1,49 @@
+.check-container{
+    display : flex;
+    justify-content: space-evenly;
+    box-shadow: rgba(90, 90, 90, 0.35) 0px 5px 15px;
+    padding : 20px;
+    color : var(--secondary-text-color);
+    width: fit-content;
+    margin : 0 auto;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.checkout-title{
+    text-align: center;
+    margin-top: 10px;
+    color : var(--secondary-text-color)
+}
+
+label{
+    margin-left: 10px;
+}
+
+.address-info{
+    padding : 10px;
+    height: fit-content;
+}
+
+.flex2col{
+    display : flex;
+    justify-content: space-between;
+    padding : 10px;
+}
+
+.aligncenter{
+    text-align: center;
+    padding : 10px;
+}
+
+.checkout_btn{
+    display : block;
+    padding : 10px;
+    background-color: #214946;
+    color: white;
+    border-radius: 10px;
+    border: transparent;
+    cursor: pointer;
+    margin: 10px auto 10px auto;
+    text-align: center;
+}

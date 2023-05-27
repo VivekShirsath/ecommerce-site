@@ -4,12 +4,16 @@ import { useProduct } from '../../context/ProductContext';
 
 export const Filter = () => {
     const {checkboxesForCategory,dispatch,sortByPrice,sortByStar,
-      sliderValue} = useProduct();
+      sliderValue,isDrawer} = useProduct();
     return(
-        <div className="filter">
+        <div className={isDrawer ? "filter draw" : "filter"}>
             <div className = "filter_title">
             <h4>Filters</h4>
             <button className= "filter_clear" onClick = {() => dispatch({type: "ClearFilters"})}>Clear Filters</button>
+            {isDrawer && <i class="fa fa-window-close" aria-hidden="true"
+            onClick={() => dispatch({type:"Drawer"})}
+            >
+            </i>}
             </div>
             <div className='filter_category'>
             <h4>Category</h4>
