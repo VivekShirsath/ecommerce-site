@@ -59,7 +59,7 @@ export const ProductCard = () => {
         <div className={isDrawer ? "products_name ham" : "products_name"}>
             <div className='menu'>
             <div className="hamburger" >
-            <i class="fa fa-bars" aria-hidden="true" onClick={() => dispatch({type:"Drawer"})}>
+            <i class="fa fa-arrow-up" aria-hidden="true" onClick={() => dispatch({type:"Drawer"})}>
             </i>
             <h4>Filters</h4>
             </div>
@@ -84,10 +84,10 @@ export const ProductCard = () => {
                         <button className="card_btn" onClick = { (e) => handleClick({_id,title,company,price,categoryName,image,ratings},e)}>
                             {isItemInCart({_id,title,company,price,categoryName,image,ratings},cartList) ? "Go To Cart" : "Add To Cart"}
                             </button>
-                        <div className="card_wish" onClick = {(e) => handleWishClick({_id,title,company,price,categoryName,image,ratings},e)}
+                        <span className="card_wish" onClick = {(e) => handleWishClick({_id,title,company,price,categoryName,image,ratings},e)}
                         style={{color : isItemInWishList({_id,title,company,price,categoryName,image,ratings},wishList) ? "red" : ""}}>
                         <i class="fa-regular fa-heart"></i>
-                        </div>
+                        </span>
                     </div>
                     </NavLink>
                 )})

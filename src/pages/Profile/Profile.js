@@ -31,7 +31,7 @@ export const Profile = () => {
     }
     const handleSave = (e) => {
         e.preventDefault();
-        console.log(fieldValues);
+       
         if(isNewAddress){
             setAddress([...address,fieldValues])
         }
@@ -57,7 +57,8 @@ export const Profile = () => {
     }
 
     const handleDelete = (item,index) => {
-        setAddress(address.filter((item,index) => index===Index))
+        const id = index;
+        setAddress(address.filter((item,index) => index !== id))
     }
 
     const handleLog = () => {

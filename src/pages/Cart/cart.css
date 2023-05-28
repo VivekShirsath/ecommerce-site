@@ -8,6 +8,8 @@
 
 .cart_list{
     width : 40%;
+    display : flex;
+    flex-direction: column;
     gap : 30px;
 }
 .cart_card{

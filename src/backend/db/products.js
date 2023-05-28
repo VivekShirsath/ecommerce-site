@@ -8,8 +8,8 @@ import { v4 as uuid } from "uuid";
 export const products = [
   {
     _id: uuid(),
-    title: "Bali Velvet 3 Seater Sofa in Blue Colour",
-    company: "Trevi Furniture",
+    title: "Bali Velvet 3 Seater Sofa",
+    company: "Trevi",
     price: "20299",
     categoryName: "Sofas",
     image: "https://ii1.pepperfry.com/media/catalog/product/b/a/494x544/bali-3-seater-sofa-in-velvet-blue-colour-by-trevi-furniture-bali-3-seater-sofa-in-velvet-blue-colour-bldyel.jpg",
@@ -18,7 +18,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Alba Fabric 3 Seater Sofa In Garnet Red Colour",
+    title: "Alba Fabric 3 Seater Sofa",
     company: "Alba",
     price: "26999",
     categoryName: "Sofas",
@@ -28,7 +28,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Stuttgart Fabric 3 Seater Sofa in Beige Colour",
+    title: "Stuttgart Fabric 3 Seater Sofa",
     company: "Febonic",
     price: "15700",
     categoryName: "Sofas",
@@ -38,7 +38,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Nebula Fabric 3 Seater Sofa in Charcoal Grey Colour",
+    title: "Nebula Fabric 3 Seater Sofa",
     company: "Febonic",
     price: "30000",
     categoryName: "Sofas",
@@ -48,7 +48,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Aurora Solid Wood King Size Bed",
+    title: "Aurora Wood King Size Bed",
     company: "Casca",
     price: "23999",
     categoryName: "Beds",
@@ -68,7 +68,7 @@ export const products = [
   },
   {
     _id: uuid(),
-    title: "Oriel Sheesham Wood King Size Bed",
+    title: "Sheesham Wood King Size Bed",
     company: "Mintwud",
     price: "29999",
     categoryName: "Beds",

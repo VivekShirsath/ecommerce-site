@@ -19,7 +19,7 @@ export const LogIn = () => {
       password : "",
     })
     const [isVisible,setVisible] = useState(false);
-    const testData = {email : "adarshbalika@gmail.com",password:"adarshbalika"}
+    const testData = {email : "vivekshirsath12345@gmail.com",password:"Vivek183"}
     
     
    useEffect(() => {
