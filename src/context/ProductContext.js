@@ -20,6 +20,7 @@ export const ProductProvider = ({children}) => {
         wishList : [],
         individualProduct : {},
         isDrawer : false,
+        isLoadingDetails : true,
     })
     useEffect(() => {
         getProducts()
@@ -40,6 +41,19 @@ export const ProductProvider = ({children}) => {
 
     const toastError = (message) => {
         toast.error(message, {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+    }
+
+    const toastInfo = (message) => {
+        toast.info(message, {
             position: "top-right",
             autoClose: 1000,
             hideProgressBar: false,
@@ -130,6 +144,7 @@ export const ProductProvider = ({children}) => {
     }
 
     const deleteFromWishList = async(id,token) => {
+        console.log(id);
         try{
             const {data} = await axios.delete(`api/user/wishlist/${id}`,
             {
@@ -166,9 +181,10 @@ export const ProductProvider = ({children}) => {
               }
             )
             dispatch({type : "UpdateCart",payload : data.cart})
+            if(type === "increment") toastInfo("Increased quantity")
         }
-        catch{
-
+        catch(error){
+            console.log(error);
         }
     }
 
@@ -177,8 +193,8 @@ export const ProductProvider = ({children}) => {
             const {data} = await axios.get(`/api/products/${id}`);
             dispatch({type : "ShowDetails",payload : data.product})
         }
-        catch{
-
+        catch(error){
+            console.log(error);
         }
     }
 

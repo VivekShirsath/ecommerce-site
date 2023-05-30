@@ -49,7 +49,7 @@ export const AuthProvider = ({children}) => {
             setToken(data.encodedToken);
             setUser(data.createdUser);
         }
-        console.log(data);
+      
     }
     catch(error){
         console.log(error);
@@ -57,7 +57,7 @@ export const AuthProvider = ({children}) => {
 }
 
     const logInHandler = async(email,password) => {
-        console.log(email,password)
+        
         try{
             const {status,data} = await axios.post("/api/auth/login",{
                 email,
@@ -78,7 +78,7 @@ export const AuthProvider = ({children}) => {
         }
     }
     return(
-        <AuthContext.Provider value={{signUpHandler,token,user,logInHandler,address,setAddress,setToken}}>
+        <AuthContext.Provider value={{signUpHandler,token,user,logInHandler,address,setAddress,setToken,setUser}}>
             {children}
         </AuthContext.Provider>
     )

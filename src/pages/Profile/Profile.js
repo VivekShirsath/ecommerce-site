@@ -2,10 +2,11 @@ import "./profile.css";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import {  useState } from "react";
-
+import { useProduct } from "../../context/ProductContext";
 
 export const Profile = () => {
-    const {user,address,setAddress,setToken} = useAuth();
+    const {user,address,setAddress,setToken,setUser} = useAuth();
+    const {dispatch} = useProduct();
     const [isFieldForm,setFiedldForm] =  useState(false);
     const [Index,setIndex] = useState();
     const [isNewAddress,setNewAddress] = useState(false);
@@ -24,7 +25,7 @@ export const Profile = () => {
     const navigate = useNavigate();
     
     const handleEdit = (item,index) => {
-        console.log(index,item);
+       
          setFiedldForm(!isFieldForm);
          setIndex(index);
         setFieldValues(item);
@@ -64,6 +65,8 @@ export const Profile = () => {
     const handleLog = () => {
         localStorage.removeItem('loginDetails');
         setToken("");
+        setUser("");
+        dispatch({type : "Logout"})
         navigate('/login');
     }
     const handleChange = (e) => {

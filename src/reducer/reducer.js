@@ -18,8 +18,6 @@ export const reducer = (state,action) => {
 
 
         case "FilterCategory":{
-
-            console.log(action.payload)
             
             const isCategoryPresent = state.checkboxesForCategory.find(item => item === action.payload);
 
@@ -118,7 +116,8 @@ export const reducer = (state,action) => {
         case "ShowDetails":{
             return{
                 ...state,
-                individualProduct : action.payload
+                individualProduct : action.payload,
+                isLoadingDetails : false,
             }
         }
 
@@ -126,6 +125,14 @@ export const reducer = (state,action) => {
             return{
                 ...state,
                 isDrawer : !state.isDrawer,
+            }
+        }
+
+        case "Logout":{
+            return{
+                ...state,
+                cartList : [],
+                wishList : [],
             }
         }
         default:

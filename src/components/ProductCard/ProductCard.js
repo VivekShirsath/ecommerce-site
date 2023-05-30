@@ -9,7 +9,7 @@ import { NavLink } from 'react-router-dom';
 export const ProductCard = () => {
     const {productList,checkboxesForCategory,sortByPrice,sortByStar,sliderValue,
         searchText,isLoading,addToCart,cartList,addToWishList,wishList,deleteFromWishList
-    ,productDetails,dispatch,isDrawer} = useProduct();
+    ,dispatch,isDrawer} = useProduct();
     
     const {token} = useAuth();
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ export const ProductCard = () => {
 
     const searchedList = searchText.length > 0 ? filteredList.filter(({title}) => title.toLowerCase().includes(searchText)) : filteredList;
 
-    console.log(productList)
+
 
     const isItemInCart = (item) =>{
        return cartList?.find((product) => product._id === item._id)
@@ -55,11 +55,12 @@ export const ProductCard = () => {
 
     return(
         <>
-        {!isLoading && searchedList?.length === 0 && <h4 className="msg">Sorry,No Products Found.</h4>}
+        {!isLoading && searchedList?.length === 0 ? <h4 className="msg">Sorry,No Products Found.</h4>
+        :
         <div className={isDrawer ? "products_name ham" : "products_name"}>
             <div className='menu'>
             <div className="hamburger" >
-            <i class="fa fa-arrow-up" aria-hidden="true" onClick={() => dispatch({type:"Drawer"})}>
+            <i className="fa fa-arrow-up" aria-hidden="true" onClick={() => dispatch({type:"Drawer"})}>
             </i>
             <h4>Filters</h4>
             </div>
@@ -72,13 +73,14 @@ export const ProductCard = () => {
             {
                 !isLoading && searchedList?.map(({_id,title,company,price,categoryName,image,ratings}) => { 
                     return(
-                    <NavLink to = "/details"><div className="card" key={_id} onClick={() => productDetails(_id)}>
+                    <NavLink to = {"details/" + _id}>
+                    <div className="card" key={_id}>
                     <img className= "card_img"src={image} alt="productimage"/>
                     <p className="card_title">{title}</p>
                     <div className="card_flex">
                         <p className = "card_company">By {company}</p>
                         <p className="card_ratings">{ratings}
-                        <i class="fa-solid fa-star" style={{color : "green"}}></i></p>
+                        <i className="fa-solid fa-star" style={{color : "green"}}></i></p>
                     </div>
                         <p className="card_price">₹ {price}</p>
                         <button className="card_btn" onClick = { (e) => handleClick({_id,title,company,price,categoryName,image,ratings},e)}>
@@ -86,7 +88,7 @@ export const ProductCard = () => {
                             </button>
                         <span className="card_wish" onClick = {(e) => handleWishClick({_id,title,company,price,categoryName,image,ratings},e)}
                         style={{color : isItemInWishList({_id,title,company,price,categoryName,image,ratings},wishList) ? "red" : ""}}>
-                        <i class="fa-regular fa-heart"></i>
+                        <i className="fa-regular fa-heart"></i>
                         </span>
                     </div>
                     </NavLink>
@@ -95,6 +97,7 @@ export const ProductCard = () => {
 
         </div>
         </div>
+}
         </>
     )
 }

@@ -20,16 +20,16 @@ function App() {
     <div className="App">
         <Header/>
         <ToastContainer
-position="top-right"
-autoClose={1000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="colored"
+    position="top-right"
+    autoClose={1000}
+    hideProgressBar={false}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="colored"
 />
       <Routes>
         <Route>
@@ -38,7 +38,7 @@ theme="colored"
           <Route path="/mockman" element={<Mockman/>}/>
           <Route path="/login" element={<LogIn/>}/>
           <Route path="/signup" element={<SignUp/>}/> 
-          <Route path="/details" element={<Details/>}/>
+          <Route path="product/details/:id" element={<Details/>}/>
           <Route path="/checkout" element={<Checkout/>}/>
           <Route path = "/profile" element = {
             <ProtectedRoute>

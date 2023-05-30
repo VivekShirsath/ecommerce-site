@@ -5,7 +5,6 @@ import { useProduct } from '../../context/ProductContext';
 export const Filter = () => {
     const {checkboxesForCategory,dispatch,sortByPrice,sortByStar,
       sliderValue,isDrawer} = useProduct();
-      console.log(checkboxesForCategory?.find(item => item === "Sofas"));
     return(
         <div className={isDrawer ? "filter draw" : "filter"}>
             <div className = "filter_title">
