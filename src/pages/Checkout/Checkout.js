@@ -6,6 +6,7 @@ export const Checkout = () => {
     const {address} = useAuth();
     const {cartList} = useProduct();
     const totalPrice = cartList?.reduce((acc,{price,qty}) => acc + price *qty ,0);
+
     return(
         <>
          <h3 className="checkout-title">Checkout</h3>
@@ -19,7 +20,7 @@ export const Checkout = () => {
             <h4>Qty</h4>
         </div>
         {
-            cartList.map(({_id,title,company,price,categoryName,image,qty}) => {
+            cartList?.map(({_id,title,company,price,categoryName,image,qty}) => {
                 return(
                     <div className="flex2col" key={_id}>
                         <p>{title}</p>
@@ -48,10 +49,12 @@ export const Checkout = () => {
         <hr></hr>
         <div className="address-info">
         {
-            address.map(({roomNo,area,city,state,pinCode}) => {
+            address?.map(({roomNo,area,city,state,pinCode}) => {
                 return(
                     <div>
-                        <input type="radio"/>
+                        <input type="radio"
+                        checked
+                        />
                         <label>
                         {roomNo},{area},{city},{state}
                         </label>
