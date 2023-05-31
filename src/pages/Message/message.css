@@ -1,0 +1,7 @@
+
+.address_msg{
+    color : var(--secondary-text-color);
+    margin-top: 10px;
+    text-align: center;
+    padding : 10px;
+}

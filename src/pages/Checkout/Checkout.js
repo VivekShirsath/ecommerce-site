@@ -1,13 +1,31 @@
 import { useAuth } from "../../context/AuthContext"
 import { useProduct } from "../../context/ProductContext";
+import { useNavigate } from "react-router-dom";
+
 import './checkout.css'
 
 export const Checkout = () => {
     const {address} = useAuth();
-    const {cartList} = useProduct();
+    const {cartList,dispatch,selectedAddress,toastError} = useProduct();
+    const navigate = useNavigate();
+
     const totalPrice = cartList?.reduce((acc,{price,qty}) => acc + price *qty ,0);
 
-    return(
+    const handleaddress = (index) => {
+        const add = address[index];
+       dispatch({type : "OrderAddress",payload : add})
+    }
+
+    const handleMessage = () => {
+        if(selectedAddress.length === 0){
+            toastError("Please Select address")
+        }
+        else{
+            navigate("/message")
+        }
+    }
+
+     return(
         <>
          <h3 className="checkout-title">Checkout</h3>
         <div className="check-container">
@@ -49,11 +67,11 @@ export const Checkout = () => {
         <hr></hr>
         <div className="address-info">
         {
-            address?.map(({roomNo,area,city,state,pinCode}) => {
+            address?.map(({roomNo,area,city,state,pinCode},index) => {
                 return(
                     <div>
-                        <input type="radio"
-                        />
+                        <input type="radio" name="address"
+                        onChange={(e) => handleaddress(index)}/>
                         <label>
                         {roomNo},{area},{city},{state}
                         </label>
@@ -62,7 +80,8 @@ export const Checkout = () => {
             })
         }
        </div>
-       <button className="place_btn">Place Order</button>
+       <button className="place_btn" onClick={handleMessage}
+       >Place Order</button>
        </div>
         </div>
         </>

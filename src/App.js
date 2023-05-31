@@ -12,6 +12,7 @@ import { Cart } from './pages/Cart/Cart';
 import { WishList } from './pages/WishList/WishList';
 import { Details } from './pages/Details/Details';
 import { Checkout } from './pages/Checkout/Checkout';
+import { Message } from './pages/Message/Message';
 import Mockman from "mockman-js";
 import "./App.css";
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/signup" element={<SignUp/>}/> 
           <Route path="product/details/:id" element={<Details/>}/>
           <Route path="/checkout" element={<Checkout/>}/>
+          <Route path ="/message" element={<Message/>}/>
           <Route path = "/profile" element = {
             <ProtectedRoute>
               {<Profile/>}

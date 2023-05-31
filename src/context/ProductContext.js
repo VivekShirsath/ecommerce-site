@@ -21,6 +21,7 @@ export const ProductProvider = ({children}) => {
         individualProduct : {},
         isDrawer : false,
         isLoadingDetails : true,
+        selectedAddress : [],
     })
     useEffect(() => {
         getProducts()
@@ -215,7 +216,7 @@ export const ProductProvider = ({children}) => {
 
     return(
         <ProductContext.Provider value={{...state,dispatch,getCart,addToCart,deleteFromCart,updateCart,addToWishList,deleteFromWishList,
-        productDetails,getWishlist}}>
+        productDetails,getWishlist,toastError}}>
             {children}
         </ProductContext.Provider>
     )

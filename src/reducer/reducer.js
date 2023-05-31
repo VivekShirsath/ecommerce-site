@@ -142,6 +142,13 @@ export const reducer = (state,action) => {
                 wishList : [],
             }
         }
+
+        case "OrderAddress":{
+            return{
+                ...state,
+                selectedAddress : action.payload
+            }
+        }
         default:
     }
 }
