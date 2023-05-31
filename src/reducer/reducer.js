@@ -78,6 +78,13 @@ export const reducer = (state,action) => {
             }
         }
 
+        case "WishListDetails":{
+            return{
+                ...state,
+                wishList : action.payload
+            }
+        }
+
         case "AddToCart":{
             return{
                 ...state,

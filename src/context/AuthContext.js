@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { createContext,useContext,useState } from "react";
+import { useProduct } from './ProductContext';
 import {toast} from 'react-toastify';
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({children}) => {
     const storage = JSON?.parse(localStorage?.getItem('loginDetails'));
+    const {getCart,getWishlist} = useProduct();
     const [token,setToken] = useState(storage?.token);
     const [user,setUser] = useState(storage?.user);
     const [address,setAddress] = useState([
@@ -46,6 +48,8 @@ export const AuthProvider = ({children}) => {
                 token : data.encodedToken,
                 user : data.createdUser,
             }));
+            getCart(data.encodedToken);
+            getWishlist(data.encodedToken)
             setToken(data.encodedToken);
             setUser(data.createdUser);
         }
@@ -69,6 +73,8 @@ export const AuthProvider = ({children}) => {
                     token : data.encodedToken,
                     user : data.foundUser,
                 }));
+                getCart(data.encodedToken);
+                getWishlist(data.encodedToken)
                 setToken(data.encodedToken);
                 setUser(data.foundUser);
             }

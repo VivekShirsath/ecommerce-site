@@ -87,6 +87,21 @@ export const ProductProvider = ({children}) => {
         }
     }
 
+    const getWishlist = async(token) => {
+        try{
+            const {data} = await axios.get("/api/user/wishlist",
+            {
+                headers: {
+                  authorization: token,
+                },
+              })
+              dispatch({type : "WishListDetails",payload : data.wishlist}) 
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
     const addToCart = async(product,token) => {
         try{
             const {data} = await axios.post("/api/user/cart",{
@@ -200,7 +215,7 @@ export const ProductProvider = ({children}) => {
 
     return(
         <ProductContext.Provider value={{...state,dispatch,getCart,addToCart,deleteFromCart,updateCart,addToWishList,deleteFromWishList,
-        productDetails}}>
+        productDetails,getWishlist}}>
             {children}
         </ProductContext.Provider>
     )

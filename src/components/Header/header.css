@@ -63,6 +63,22 @@ ul{
     display : none;
 }
 
+.list{
+    position : relative;
+}
+
+.items{
+    width :18px; 
+    font-size: 15px;
+    border-radius: 10px;
+    background-color: #214946;
+    position : absolute;
+    right : -7px;
+    bottom : 17px;
+    color : white;
+    text-align: center;
+}
+
 @media screen and (max-width: 550px){
 
 .header_input_mobile{

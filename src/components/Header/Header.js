@@ -6,7 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
-    const {dispatch} = useProduct();
+    const {dispatch,cartList,wishList} = useProduct();
     const {token,setToken,setUser} = useAuth();
     const navigate = useNavigate();
     const handleSearch = value => {
@@ -39,12 +39,17 @@ export const Header = () => {
                 <i className="fa fa-search" style={{color : "#8b9e70",cursor : "pointer"}}></i>
             </div>
             <ul className = "Header_list">
-                <li>
-                <NavLink to ="/cart"><i className="fa fa-shopping-cart">
-                </i></NavLink>
+                <li className="list">
+                <NavLink to ="/cart"><i className="fa fa-shopping-cart"></i>
+                {cartList.length > 0 ?
+                <span className="items">{cartList.length}</span>: <></>}
+                </NavLink>
                 </li>
-                <li>
-                <NavLink to ="/wishlist"><i className="fa fa-heart"></i></NavLink>
+                <li className="list">
+                <NavLink to ="/wishlist"><i className="fa fa-heart"></i>
+                {wishList.length > 0 ?
+                <span className="items">{wishList.length}</span>:<></>}
+                </NavLink>
                 </li>
                 <NavLink to = "/profile">
                     <i className="fa fa-user" aria-hidden="true"></i>

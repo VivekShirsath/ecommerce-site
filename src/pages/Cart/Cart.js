@@ -3,21 +3,22 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate  } from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import './cart.css';
+import { useEffect } from "react";
 
 export const Cart = () => {
-    const {cartList,deleteFromCart,updateCart,wishList,addToWishList} = useProduct();
+    const {cartList,deleteFromCart,updateCart,wishList,addToWishList,getCart} = useProduct();
     const {token} = useAuth();
     const navigate = useNavigate();
     const totalPrice = cartList?.reduce((acc,{price,qty}) => acc + price *qty ,0);
 
-
     const isItemInWishList = (item) => {
         return wishList?.find((product) => product._id === item._id)
     }
-
     const handleClick = item => {
         isItemInWishList(item) ? navigate('/wishlist') : addToWishList(item,token)
     }
+
+   
    
     return(
         <>

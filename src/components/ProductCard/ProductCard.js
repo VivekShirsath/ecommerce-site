@@ -4,7 +4,8 @@ import { useProduct } from "../../context/ProductContext";
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate , useLocation} from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-
+import red from '../red.png'
+import love from '../love.png'
 
 export const ProductCard = () => {
     const {productList,checkboxesForCategory,sortByPrice,sortByStar,sliderValue,
@@ -27,7 +28,6 @@ export const ProductCard = () => {
     const filteredList = filterforRatingList?.filter(({price}) => Number(price) <= sliderValue);
 
     const searchedList = searchText.length > 0 ? filteredList.filter(({title}) => title.toLowerCase().includes(searchText)) : filteredList;
-
 
 
     const isItemInCart = (item) =>{
@@ -88,7 +88,8 @@ export const ProductCard = () => {
                             </button>
                         <span className="card_wish" onClick = {(e) => handleWishClick({_id,title,company,price,categoryName,image,ratings},e)}
                         style={{color : isItemInWishList({_id,title,company,price,categoryName,image,ratings},wishList) ? "red" : ""}}>
-                        <i className="fa-regular fa-heart"></i>
+                        {isItemInWishList({_id,title,company,price,categoryName,image,ratings},wishList) 
+                        ? <img src={red}/> : <img src={love}/>}
                         </span>
                     </div>
                     </NavLink>
