@@ -53,7 +53,6 @@ export const Checkout = () => {
                 return(
                     <div>
                         <input type="radio"
-                        checked
                         />
                         <label>
                         {roomNo},{area},{city},{state}
