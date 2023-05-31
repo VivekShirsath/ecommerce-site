@@ -31,7 +31,7 @@ export const Profile = () => {
         setFieldValues(item);
     }
     const handleSave = (e) => {
-        e.preventDefault();
+       e.preventDefault();
        
         if(isNewAddress){
             setAddress([...address,fieldValues])
@@ -101,7 +101,8 @@ export const Profile = () => {
            <button className="card_btn" onClick={() => handleLog()}>Log Out</button>
         </div>
         </div>
-        <form className={isFieldForm ? "address-form" : "address-form off"}>
+        <form className={isFieldForm ? "address-form" : "address-form off"}
+        onSubmit={(e) => handleSave(e)}>
                 <h3>Add New Address</h3>
                 <input className="input-fields" type = "text" placeholder='Enter RoomNo.'
                 value={fieldValues.roomNo}
@@ -126,7 +127,7 @@ export const Profile = () => {
                 value={fieldValues.state}
                 onChange={(e) => handleChange(e)}
                 required/>
-                <button className="profile-btn save" onClick={(e) => handleSave(e)}>
+                <button className="profile-btn save" onSubmit={(e) => handleSave(e)}>
                     Save
                  </button>
             </form>

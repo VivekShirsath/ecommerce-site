@@ -29,7 +29,7 @@ export const Cart = () => {
         <div className="cart_list">
          {cartList?.map(({_id,title,company,price,categoryName,image,qty}) => {
                     return(
-                        <div className="cart_card">
+                        <div className="cart_card" key={_id}>
                         <img className = "cart_img"src={image} alt="product_img"/>
                         <div className="cart_info">
                             <p>{title}</p>

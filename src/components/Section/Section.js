@@ -5,7 +5,7 @@ import change from './change.png'
 
 export const Section = () => {
     return(
-        <section class="section">
+        <section className="section">
             <div className="section_left">
             <div className="section_left_info">
                <h3 className="section_tagline">Furniture that 

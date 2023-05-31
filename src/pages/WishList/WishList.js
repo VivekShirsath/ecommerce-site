@@ -22,7 +22,7 @@ export const WishList = () => {
         {wishList?.length !== 0 && 
           wishList?.map(({_id,title,company,price,categoryName,image,qty}) => {
             return(
-              <div className="wisList_card">
+              <div className="wisList_card" key={_id}>
                         <img className = "cart_img"src={image} alt="product_img"/>
                         <div className="cart_info">
                             <p>{title}</p>

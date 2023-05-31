@@ -8,7 +8,7 @@ export const Footer = () => {
                 <h3>Furni</h3>
                 <p>Privacy Policy</p>
                 <p>Terms Of Use</p>
-                <p><i class="far fa-copyright"></i>2023 Furni</p>
+                <p><i className="far fa-copyright"></i>2023 Furni</p>
             </section>
             <section className="footer_list">
                 <ul>

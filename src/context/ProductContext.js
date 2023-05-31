@@ -160,7 +160,6 @@ export const ProductProvider = ({children}) => {
     }
 
     const deleteFromWishList = async(id,token) => {
-        console.log(id);
         try{
             const {data} = await axios.delete(`api/user/wishlist/${id}`,
             {
