@@ -27,7 +27,7 @@ export const Checkout = () => {
             navigate("/message")
         }
     }
-    console.log(cartList)
+    
      return(
         <>
          <h3 className="checkout-title">Checkout</h3>

@@ -1,20 +1,24 @@
 
 import './productCard.css';
+import { useEffect } from 'react';
 import { useProduct } from "../../context/ProductContext";
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate , useLocation} from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import red from '../red.png'
 import love from '../love.png'
+import { useState } from 'react';
 
 export const ProductCard = () => {
     const {productList,checkboxesForCategory,sortByPrice,sortByStar,sliderValue,
-        searchText,isLoading,addToCart,cartList,addToWishList,wishList,deleteFromWishList
+        searchText,addToCart,cartList,addToWishList,wishList,deleteFromWishList
     ,dispatch,isDrawer} = useProduct();
     
     const {token} = useAuth();
     const navigate = useNavigate();
-    const location = useLocation()
+    const location = useLocation();
+    const [isLoading,setLoading] = useState(true);
+
     const checkedList = checkboxesForCategory?.length > 0 ?
          productList.filter((item) => checkboxesForCategory.find((element) => item.categoryName === element ))
          : productList;
@@ -52,7 +56,9 @@ export const ProductCard = () => {
        : addToWishList(item,token)) : navigate("/login",{ state: { from: location } })
     }
 
-
+        useEffect(() => {
+            setLoading(false)
+        },[])
     return(
         <>
         {!isLoading && searchedList?.length === 0 ? <h4 className="msg">Sorry,No Products Found.</h4>
