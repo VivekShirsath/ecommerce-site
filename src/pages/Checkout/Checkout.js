@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import './checkout.css'
 
 export const Checkout = () => {
-    const {address} = useAuth();
-    const {cartList,dispatch,selectedAddress,toastError} = useProduct();
+    const {address,token} = useAuth();
+    const {cartList,dispatch,selectedAddress,toastError,deleteFromCart} = useProduct();
     const navigate = useNavigate();
 
     const totalPrice = cartList?.reduce((acc,{price,qty}) => acc + price *qty ,0);
@@ -21,10 +21,13 @@ export const Checkout = () => {
             toastError("Please Select address")
         }
         else{
+            for(let i = 0;i<cartList?.length;i++){
+                deleteFromCart(cartList[i]._id,token)
+            }
             navigate("/message")
         }
     }
-
+    console.log(cartList)
      return(
         <>
          <h3 className="checkout-title">Checkout</h3>

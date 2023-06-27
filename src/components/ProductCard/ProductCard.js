@@ -73,8 +73,8 @@ export const ProductCard = () => {
             {
                 !isLoading && searchedList?.map(({_id,title,company,price,categoryName,image,ratings}) => { 
                     return(
-                    <NavLink to = {"details/" + _id}>
-                    <div className="card" key={_id}>
+                    <NavLink to = {"details/" + _id} key={_id}>
+                    <div className="card">
                     <img className= "card_img"src={image} alt="productimage"/>
                     <p className="card_title">{title}</p>
                     <div className="card_flex">
@@ -89,7 +89,7 @@ export const ProductCard = () => {
                         <span className="card_wish" onClick = {(e) => handleWishClick({_id,title,company,price,categoryName,image,ratings},e)}
                         style={{color : isItemInWishList({_id,title,company,price,categoryName,image,ratings},wishList) ? "red" : ""}}>
                         {isItemInWishList({_id,title,company,price,categoryName,image,ratings},wishList) 
-                        ? <img src={red}/> : <img src={love}/>}
+                        ? <img src={red} alt=""/> : <img src={love} alt=""/>}
                         </span>
                     </div>
                     </NavLink>
