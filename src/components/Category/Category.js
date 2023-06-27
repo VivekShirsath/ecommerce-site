@@ -1,5 +1,6 @@
 
 import './category.css';
+import { useState , useEffect} from 'react';
 import { useCategory } from '../../context/CategoryContext';
 import { useProduct } from '../../context/ProductContext';
 import { useNavigate } from 'react-router-dom';
@@ -8,12 +9,22 @@ export const Category = () => {
     const {category} = useCategory();
     const {dispatch} = useProduct();
     const navigate = useNavigate();
+    const [isLoading,setLoading] = useState(true);
 
     const addCategory = (name) => {
         dispatch({ type: "SelectCategory", payload: name });
         navigate("/product");
     }
+
+    useEffect(() => {
+        setLoading(false)
+    },[])
     return(
+        <>
+        {isLoading ? 
+            <div className="spinner">
+            <i className="fa fa-spinner" aria-hidden="true"></i>
+            </div> :
         <>
         <div className="category">
             <h4 className="category_title">Category</h4>
@@ -31,6 +42,8 @@ export const Category = () => {
                 })
             }
             </div>
+            </>
+}
         </>
     )
 }
